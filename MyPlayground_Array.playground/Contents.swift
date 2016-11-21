@@ -132,6 +132,15 @@ func demo_Methods() {
     
     let possibleNumbers = ["1", "2", "three", "///4///", "5"]
     
+    //array的闭包方法
+    
+    let lowercaseNames = cast.map { name in
+        return name.lowercased()
+    }
+    // 'lowercaseNames' == ["vivien", "marlon", "kim", "karl"]
+    let letterCounts = cast.map { $0.characters.count }
+    // 'letterCounts' == [6, 6, 3, 4]
+    
     let mapped: [Int?] = possibleNumbers.map { str in Int(str) }
     // [1, 2, nil, nil, 5]
     
@@ -139,20 +148,26 @@ func demo_Methods() {
     // [1, 2, 5]
     //Returns an array containing the non-nil results of calling the given transformation with each element of this sequence.
     
-    
-    
     let numberWords = ["one", "two", "three"]
     for word in numberWords {
         print(word)
     }
-    // Prints "one"
-    // Prints "two"
-    // Prints "three"
+//     Prints "one"
+//     Prints "two"
+//     Prints "three"
     
     numberWords.forEach { word in
         print(word)
     }
+    
+    
+    let line = "BLANCHE:   I don't want realism. I want magic!"
+    print(line.characters.split(whereSeparator: { $0 == " " }).map(String.init))
+    // Prints "["BLANCHE:", "I", "don\'t", "want", "realism.", "I", "want", "magic!"]"
+    line.characters.split(separator: " ").map { String($0) }
+    
 }
+
 demo_Methods()
 
 func demo_Methods2() {
@@ -174,12 +189,22 @@ func demo_Methods2() {
     
     array.max()
     array.min()
+    cast.min()
+    cast.min { (a, b) -> Bool in
+        return a.characters.count < b.characters.count
+    }
     
     let numbers = [1, 2, 3, 4, 5]
     print(numbers.prefix(2))
     // Prints "[1, 2]"
     print(numbers.prefix(10))
     // Prints "[1, 2, 3, 4, 5]"
+    
+    
+    var students = ["Kofi", "Abena", "Peter", "Kweku", "Akosua"]
+    students.sort(by: >)
+    print(students)
+     // Prints "["Peter", "Kweku", "Kofi", "Akosua", "Abena"]"
     
 }
 
