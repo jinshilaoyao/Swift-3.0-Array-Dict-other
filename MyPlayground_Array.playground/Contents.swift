@@ -206,6 +206,20 @@ func demo_Methods2() {
     print(students)
      // Prints "["Peter", "Kweku", "Kofi", "Akosua", "Abena"]"
     
+    var firarray = [1,2,3,4]
+    firarray.reduce(2) { (x, y) -> Int in
+        x
+        y
+        return 2*x + y
+    }
+    
+    
+    firarray.filter { (x) -> Bool in
+        return x%2 == 0
+    }
+    
+    firarray.reverse()
+    
 }
 
 demo_Methods2()
